@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Heading, Container } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Conversation from "../components/Conversation";
