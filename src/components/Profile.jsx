@@ -16,21 +16,19 @@ const profileInformation = [
   },
 ];
 
- const activities = ['Sports', 'Movies', 'Reading', 'Gaming', 'Hiking'];
+ const interests = ['Sports', 'Movies', 'Reading', 'Gaming', 'Hiking'];
 
 const Profile = (props) => {
-const [selected, setSelected] = useState('');
-  return (
-    <Stack spacing={2}>
-        <Heading as='h2' size='lg'>{props.heading}</Heading>
-     <>
-      <InterestBadges selected={selected} setSelected={setSelected} activities={activities} />
-      {profileInformation.map((info, index) => (
-      <ProfileInput info ={info} key= {index} />
-      ))}
-    </>
-    </Stack>
-  );
+    const [selected, setSelected] = useState('');
+    return (
+        <Stack spacing={2}>
+            <Heading as='h2' size='lg'>{props.heading}</Heading>
+            <InterestBadges selected={selected} setSelected={setSelected} interests={interests} />
+            {profileInformation.map((info, index) => (
+                <ProfileInput info ={info} key= {index} />
+            ))}
+        </Stack>
+    );
 };
 
 export default Profile;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Stack, Heading, Flex } from "@chakra-ui/react";
 import Message from "../components/Message";
 import MessageOptions from "../components/MessageOptions";
+import { getPickUpLine, getRoot } from '../Api.js';
 
 const Conversation = () => {
   const [history, setHistory] = useState([]);
@@ -17,11 +18,20 @@ const Conversation = () => {
   };
 
   const fetchOptions = async (selectedOption) => {
-    let options = ['test1', 'test2']; // API Call
+    let {choices} = await getPickUpLine({"profile1": {"name":"p1", "profession":"engineer", "favorite food":"noodles"},
+                                "profile2": {"name":"p1", "profession":"engineer", "favorite food":"noodles"},
+                                "reply_to": null,
+                                "msg_attr": [
+                                    "witty",
+                                    "funny",
+                                    "curious to know about each other"
+                                ],
+                                "history": []});
+    console.log(choices[0]);
     if (selectedOption) {
       options = ['test3', 'test4'];
     }
-    setOptions(options);
+    setOptions(choices[0]);
   };
 
   return (
