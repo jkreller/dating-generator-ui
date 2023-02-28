@@ -1,6 +1,11 @@
 import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+
+
 
 const Profile = (props) => {
+const [selected, setSelected] = useState('');
   return (
     <Stack spacing={2}>
         <Heading as='h2' size='lg'>{props.heading}</Heading>
@@ -8,20 +13,20 @@ const Profile = (props) => {
         <Textarea placeholder='About me' />
         <Text>Interests</Text>
         <Box>
-          <Badge m='7px'>Photography</Badge>
-          <Badge m='7px'>Art</Badge>
-          <Badge m='7px'>Design</Badge>
-          <Badge m='7px'>Gym</Badge>
-          <Badge m='7px'>Running</Badge>
-          <Badge m='7px'>Dancing</Badge>
-          <Badge m='7px'>Baseball</Badge>
-          <Badge m='7px'>Bowling</Badge>
-          <Badge m='7px'>Basketball</Badge>
-          <Badge m='7px'>Karaoke</Badge>
-          <Badge m='7px'>Theater</Badge>
-          <Badge m='7px'>Cooking</Badge>
-          <Badge m='7px'>TV</Badge>
-          <Badge m='7px'>Concerts</Badge>
+          <Badge m='7px' color={selected === 'Photography' ? 'green' : 'gray'} onClick={() => setSelected('Photography')}>Photography</Badge>
+          <Badge m='7px' color={selected === 'Art' ? 'green' : 'gray'} onClick={() => setSelected('Art')}>Art</Badge>
+          <Badge m='7px' color={selected === 'Design' ? 'green' : 'gray'} onClick={() => setSelected('Design')}>Design</Badge>
+          <Badge m='7px' color={selected === 'Gym' ? 'green' : 'gray'} onClick={() => setSelected('Gym')}>Gym</Badge>
+          <Badge m='7px' color={selected === 'Running' ? 'green' : 'gray'} onClick={() => setSelected('Running')}>Running</Badge>
+          <Badge m='7px' color={selected === 'Dancing' ? 'green' : 'gray'} onClick={() => setSelected('Dancing')}>Dancing</Badge>
+          <Badge m='7px' color={selected === 'Baseball' ? 'green' : 'gray'} onClick={() => setSelected('Baseball')}>Baseball</Badge>
+          <Badge m='7px' color={selected === 'Bowling' ? 'green' : 'gray'} onClick={() => setSelected('Bowling')}>Bowling</Badge>
+          <Badge m='7px' color={selected === 'Basketball' ? 'green' : 'gray'} onClick={() => setSelected('Basketball')}>Basketball</Badge>
+          <Badge m='7px' color={selected === 'Karaoke' ? 'green' : 'gray'} onClick={() => setSelected('Karaoke')}>Karaoke</Badge>
+          <Badge m='7px' color={selected === 'Theater' ? 'green' : 'gray'} onClick={() => setSelected('Theater')}>Theater</Badge>
+          <Badge m='7px' color={selected === 'Cooking' ? 'green' : 'gray'} onClick={() => setSelected('Cooking')}>Cooking</Badge>
+          <Badge m='7px' color={selected === 'TV' ? 'green' : 'gray'} onClick={() => setSelected('TV')}>TV</Badge>
+          <Badge m='7px' color={selected === 'Concerts' ? 'green' : 'gray'} onClick={() => setSelected('Concerts')}>Concerts</Badge>
         </Box>
         <Select placeholder='Looking for'>
           <option value='1'>Relationship</option>

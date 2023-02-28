@@ -1,6 +1,7 @@
 import './App.css';
 import Chat from './pages/Chat';
 import { ChakraProvider, Container } from '@chakra-ui/react'
+import { getPickUpLine, getRoot } from './Api.js';
 
 function App() {
   return (
