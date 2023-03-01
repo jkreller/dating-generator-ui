@@ -22,5 +22,4 @@ function ProfileInput({info}) {
         </FormControl>
   );
 }
-
 export default ProfileInput;
