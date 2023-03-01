@@ -1,26 +1,25 @@
 import React from 'react';
 import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select, Flex } from "@chakra-ui/react";
 
-const InterestBadges = ({ selected, setSelected, activities }) => {
-
-  const handleClick = activity => {
-    if (selected.includes(activity)) {
-      const newSelected = selected.filter(item => item !== activity);
+const InterestBadges = ({ selected, setSelected, interests }) => {
+  const handleClick = interest => {
+    if (selected.includes(interest)) {
+      const newSelected = selected.filter(item => item !== interest);
       setSelected(newSelected);
     } else {
-        setSelected([...selected, activity]);
+      setSelected([...selected, interest]);
     }
   };
 
   return (
-<Flex flexDirection="row">
-      {activities.map(activity => (
+    <Flex flexDirection="row">
+      {interests.map(interest => (
         <Badge
-          key={activity}
+          key={interest}
           m="7px"
-          color={selected.includes(activity) ? 'black' : 'gray'}
-          onClick={() => handleClick(activity)}>
-          {activity}
+          color={selected.includes(interest) ? 'black' : 'gray'}
+          onClick={() => handleClick(interest)}>
+          {interest}
         </Badge>
       ))}
     </Flex>

@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-export const getRoot = () => {
-  return axios.get('http://localhost:8002/');
-};
+export const getPickUpLine = async (getPickupLineData, controller) => {
+  try {
+    const {data} = await axios.post('http://localhost:8002/GetPickupLine', getPickupLineData, {signal: controller?.signal});
+    return data;
+  } catch (error) {
+    console.error(`${error}`);
+  }
 
-export const getPickUpLine = (userData) => {
-  return axios.post('http://localhost:8002/GetPickupLine', userData);
+  return {};
 };
