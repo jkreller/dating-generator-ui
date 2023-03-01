@@ -4,13 +4,13 @@ import Profile from "../components/Profile";
 const Header = () => {
   return (
     <Center mb={10}>
-      <VStack>
-        <HStack>
+
+        <VStack>
+          <Profile heading='Me'/>
           <Profile heading='You'/>
-          <Profile heading='Your match'/>
-        </HStack>
+
         <Button>Go and chat!</Button>
-      </VStack>
+        </VStack>
     </Center>
   );
 };

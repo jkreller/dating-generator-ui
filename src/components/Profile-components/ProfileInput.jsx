@@ -1,24 +1,24 @@
-import { FormControl, FormLabel, Select, Input, Flex } from "@chakra-ui/react";
+import { FormControl, FormLabel, Select, Input, Flex, Box, SimpleGrid } from "@chakra-ui/react";
 
 function ProfileInput({info}) {
   return (
         <FormControl key={info.name} id={info.name}>
-        <Flex flexDirection="row">
-          <FormLabel>{info.name}</FormLabel>
+
           {info.type === "choice" ? (
-            <Select placeholder={`Select ${info.name}`}size="sm" mb="1rem" w="15rem"  >
+          <Box mb={5}>
+            <Select w='200px' placeholder={`Select ${info.name}`}  >
               {info.choices.map((choice) => (
                 <option key={choice} value={choice}>
                   {choice}
                 </option>
               ))}
             </Select>
+            </Box>
           ) : (
-            <>
-              <Input placeholder={`Enter ${info.name}`} size="sm" mb="1rem" w="15rem" />
-            </>
+            <Box mb={5}>
+              <Input w='200px' placeholder={`Enter ${info.name}`} />
+            </Box>
           )}
-            </Flex>
         </FormControl>
   );
 }

@@ -1,4 +1,4 @@
-import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select } from "@chakra-ui/react";
+import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select, SimpleGrid, VStack} from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import InterestBadges from './Profile-components/InterestBadges.jsx';
@@ -62,18 +62,21 @@ const profileInformation = [
       choices: ["Cats", "Dogs", "Reptiles", "Fish", "Rabbits", "Small Mammals", "Birds", "Amphibians", "Insects"],
   },
 ];
-const activities = ['art', 'writing', 'photography', 'fitness', 'go to party', 'videogames', 'watching movies', 'reading'];
+const interests = ['art', 'writing', 'photography', 'fitness', 'go to party', 'videogames', 'watching movies', 'reading'];
 
 const Profile = (props) => {
 const [selected, setSelected] = useState('');
   return (
-    <Stack spacing={2}>
-        <Heading as='h2' size='lg'>{props.heading}</Heading>
-      <InterestBadges selected={selected} setSelected={setSelected} activities={activities} />
-      {profileInformation.map((info, index) => (
-      <ProfileInput info ={info} key= {index} />
+    <VStack>
+        <Heading>{props.heading}</Heading>
+
+   <InterestBadges selected={selected} setSelected={setSelected} interests={interests} />
+     <SimpleGrid columns={4} spacing={2}>
+   {profileInformation.map((info, index) => (
+      <ProfileInput key={index} info={info}  />
       ))}
-    </Stack>
+        </SimpleGrid>
+    </VStack>
   );
 };
 
