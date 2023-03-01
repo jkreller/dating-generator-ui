@@ -12,11 +12,12 @@ const InterestBadges = ({ selected, setSelected, interests }) => {
   };
 
   return (
-    <SimpleGrid columns={7} >
+    <SimpleGrid columns={{sm: 3, md: 4, lg: 7}} >
       {interests.map(interest => (
         <Badge
           key={interest}
-          m="7px"
+          m="5px"
+          p="5px"
           color={selected.includes(interest) ? 'black' : 'gray'}
           onClick={() => handleClick(interest)}>
           {interest}

@@ -1,6 +1,5 @@
-import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select, SimpleGrid, VStack} from "@chakra-ui/react";
+import { Heading, SimpleGrid, VStack} from "@chakra-ui/react";
 import React, { useState } from 'react';
-import { Stack, Heading } from "@chakra-ui/react";
 import InterestBadges from './Profile-components/InterestBadges.jsx';
 import ProfileInput from './Profile-components/ProfileInput.jsx';
 
@@ -67,14 +66,14 @@ const interests = ['art', 'writing', 'photography', 'fitness', 'go to party', 'v
 const Profile = ({heading, onChange}) => {
     const [selectedInterest, setSelectedInterest] = useState('');
     return (
-        <VStack>
-            <Heading as='h2' size='lg'>{props.heading}</Heading>
-            <SimpleGrid columns={4} spacing={2}>
+        <VStack mb={10}>
+            <Heading as='h2' size='lg'>{heading}</Heading>
+            <SimpleGrid columns={{sm: 2, md: 3, lg: 4}} spacing={2}>
               {profileInformation.map((info, index) => (
                 <ProfileInput key={index} info={info} onChange={onChange} />
               ))}
             </SimpleGrid>
-            <InterestBadges selected={selected} setSelected={setSelected} interests={interests} />
+            <InterestBadges selected={selectedInterest} setSelected={setSelectedInterest} interests={interests} />
         </VStack>
     );
 };

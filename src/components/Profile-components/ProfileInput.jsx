@@ -4,9 +4,8 @@ function ProfileInput({info, onChange}) {
   return (
     <>
         <FormControl key={info.name} id={info.name}>
-          <FormLabel>{info.name}</FormLabel>
           {info.type === "choice" ? (
-            <Box mb={5}>
+            <Box>
               <Select name={info.name} placeholder={`Select ${info.name}`} onChange={onChange}>
                 {info.choices.map((choice) => (
                   <option key={choice} value={choice}>
@@ -16,7 +15,7 @@ function ProfileInput({info, onChange}) {
               </Select>
             </Box>
           ) : (
-            <Box mb={5}>
+            <Box>
               <Input name={info.name} placeholder={`Enter ${info.name}`} onChange={onChange} />
             </Box>
           )}
