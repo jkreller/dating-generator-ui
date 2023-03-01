@@ -62,20 +62,19 @@ const profileInformation = [
       choices: ["Cats", "Dogs", "Reptiles", "Fish", "Rabbits", "Small Mammals", "Birds", "Amphibians", "Insects"],
   },
 ];
-const interests = ['art', 'writing', 'photography', 'fitness', 'go to party', 'videogames', 'watching movies', 'reading'];
+const interests = ['art', 'writing', 'photography', 'fitness', 'go to party', 'videogames', 'watching movies', 'reading', 'singing', 'dancing', 'making videos', 'go out with friends', 'garden', 'cooking'];
 
 const Profile = (props) => {
 const [selected, setSelected] = useState('');
   return (
     <VStack>
         <Heading>{props.heading}</Heading>
-
-   <InterestBadges selected={selected} setSelected={setSelected} interests={interests} />
      <SimpleGrid columns={4} spacing={2}>
    {profileInformation.map((info, index) => (
       <ProfileInput key={index} info={info}  />
       ))}
         </SimpleGrid>
+         <InterestBadges selected={selected} setSelected={setSelected} interests={interests} />
     </VStack>
   );
 };

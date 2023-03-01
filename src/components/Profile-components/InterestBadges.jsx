@@ -12,7 +12,7 @@ const InterestBadges = ({ selected, setSelected, interests }) => {
   };
 
   return (
-    <SimpleGrid columns={4} >
+    <SimpleGrid columns={7} >
       {interests.map(interest => (
         <Badge
           key={interest}
