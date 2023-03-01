@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select } from "@chakra-ui/react";
+import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select, Flex } from "@chakra-ui/react";
 
 const InterestBadges = ({ selected, setSelected, activities }) => {
 
@@ -13,7 +13,7 @@ const InterestBadges = ({ selected, setSelected, activities }) => {
   };
 
   return (
-    <>
+<Flex flexDirection="row">
       {activities.map(activity => (
         <Badge
           key={activity}
@@ -23,7 +23,7 @@ const InterestBadges = ({ selected, setSelected, activities }) => {
           {activity}
         </Badge>
       ))}
-    </>
+    </Flex>
   );
 };
 

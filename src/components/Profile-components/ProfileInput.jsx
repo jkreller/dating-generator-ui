@@ -1,12 +1,12 @@
-import { FormControl, FormLabel, Select, Input } from "@chakra-ui/react";
+import { FormControl, FormLabel, Select, Input, Flex } from "@chakra-ui/react";
 
 function ProfileInput({info}) {
   return (
-    <>
         <FormControl key={info.name} id={info.name}>
+        <Flex flexDirection="row">
           <FormLabel>{info.name}</FormLabel>
           {info.type === "choice" ? (
-            <Select placeholder={`Select ${info.name}`}>
+            <Select placeholder={`Select ${info.name}`}size="sm" mb="1rem" w="15rem"  >
               {info.choices.map((choice) => (
                 <option key={choice} value={choice}>
                   {choice}
@@ -14,10 +14,12 @@ function ProfileInput({info}) {
               ))}
             </Select>
           ) : (
-            <Input placeholder={`Enter ${info.name}`} />
+            <>
+              <Input placeholder={`Enter ${info.name}`} size="sm" mb="1rem" w="15rem" />
+            </>
           )}
+            </Flex>
         </FormControl>
-    </>
   );
 }
 
