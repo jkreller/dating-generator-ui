@@ -21,10 +21,9 @@ const Header = ({onConversationStart}) => {
   return (
     <Center mb={10}>
       <VStack>
-        <HStack>
-          <Profile heading='You' onChange={(event) => handleProfileChange(event, 1)}/>
-          <Profile heading='Your match' onChange={(event) => handleProfileChange(event, 2)}/>
-        </HStack>
+        <Profile heading='You' onChange={(event) => handleProfileChange(event, 1)} />
+        <Profile heading='Your match' onChange={(event) => handleProfileChange(event, 2)} />
+
         <Button onClick={() => onConversationStart(profiles)}>Go and chat!</Button>
       </VStack>
     </Center>

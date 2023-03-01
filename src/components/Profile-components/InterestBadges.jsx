@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select } from "@chakra-ui/react";
+import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select, SimpleGrid } from "@chakra-ui/react";
 
 const InterestBadges = ({ selected, setSelected, interests }) => {
   const handleClick = interest => {
@@ -12,7 +12,7 @@ const InterestBadges = ({ selected, setSelected, interests }) => {
   };
 
   return (
-    <>
+    <SimpleGrid columns={7} >
       {interests.map(interest => (
         <Badge
           key={interest}
@@ -22,7 +22,7 @@ const InterestBadges = ({ selected, setSelected, interests }) => {
           {interest}
         </Badge>
       ))}
-    </>
+    </SimpleGrid>
   );
 };
 
