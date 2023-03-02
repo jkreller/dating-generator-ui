@@ -15,6 +15,7 @@ const Chat = () => {
   const [history, setHistory] = useState([]);
   const [choices, setChoices] = useState([]);
   const [hideConversation, setHideConversation] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
     if (ProfileHelper.areFilledProfiles(profiles)) {
@@ -37,9 +38,14 @@ const Chat = () => {
 
   async function fetchChoices() {
     const profileId = ProfileHelper.getNextProfileIdByHistory(history);
-    const {choices} = await getPickUpLine(profiles, profileId, history);
-
-    return choices ?? []
+    try {
+      const {choices} = await getPickUpLine(profiles, profileId, history);
+      return choices ?? []
+    } catch (error) {
+      console.error(`${error}`);
+      setFetchError(error);
+      return [];
+    }
   }
 
   return (
@@ -58,7 +64,7 @@ const Chat = () => {
         <Header onConversationStart={handleConversationStart} />
       </AnimationBox>
       <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5, delay: 0.6}} initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} hidden={hideConversation} />
+        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} hidden={hideConversation} fetchError={fetchError} />
       </AnimationBox>
     </>
   );
