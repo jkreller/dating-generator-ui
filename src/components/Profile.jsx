@@ -7,6 +7,7 @@ const profileInformation = [
   {
     name: "Name",
     type: "text",
+    required: true,
   },
   {
       name: "About me",

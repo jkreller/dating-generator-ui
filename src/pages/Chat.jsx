@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Heading, Highlight } from "@chakra-ui/react";
+import { Heading, Highlight, Box, chakra, shouldForwardProp } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Conversation from "../components/Conversation";
 import { getPickUpLine } from '../Api.js';
 import ProfileHelper from "../helper/ProfileHelper";
+import { motion, isValidMotionProp } from "framer-motion"
+
+const AnimationBox = chakra(motion.div, {
+  shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
+});
 
 const Chat = () => {
   const [profiles, setProfiles] = useState({});
@@ -24,8 +29,7 @@ const Chat = () => {
   };
 
   function handleChoiceSelection(choice) {
-    const profileId = ProfileHelper.getNextProfileIdByHistory(history);
-    setHistory([...history, `${profileId}: ${choice}`]);
+    setHistory([...history, {sender: ProfileHelper.getNextProfileIdByHistory(history), msg: choice}]);
     setChoices([]);
   }
 
@@ -33,21 +37,27 @@ const Chat = () => {
     const profileId = ProfileHelper.getNextProfileIdByHistory(history);
     const {choices} = await getPickUpLine(profiles, profileId, history);
 
-    return choices
+    return choices ?? []
   }
 
   return (
     <>
-      <Heading as='h1' size='2xl' mb={10}>
-      <Highlight
-        query={'AI'}
-        styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
-      >
-        DAITING.BETTER
-        </Highlight>
-      </Heading>
-      <Header onConversationStart={handleConversationStart} />
-      <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} />
+      <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5}} initial={{ y: '-20', opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
+        <Heading as='h1' size='2xl' mb={10}>
+          <Highlight
+            query={'AI'}
+            styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
+          >
+            DAITING.BETTER
+          </Highlight>
+        </Heading>
+      </AnimationBox>
+      <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5, delay: 0.3}} initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
+        <Header onConversationStart={handleConversationStart} />
+      </AnimationBox>
+      <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5, delay: 0.6}} initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
+        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} />
+      </AnimationBox>
     </>
   );
 };

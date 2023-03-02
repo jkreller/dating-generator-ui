@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, HStack, VStack, Center } from "@chakra-ui/react";
+import { Button, VStack, Center } from "@chakra-ui/react";
 import Profile from "../components/Profile";
 import ProfileInputCallbackObject from '../models/ProfileInputCallbackObject';
 

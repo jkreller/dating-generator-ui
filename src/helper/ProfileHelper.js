@@ -1,6 +1,11 @@
 class ProfileHelper {
     static getNextProfileIdByHistory(history) {
-        return history.length % 2 === 0 ? 'P1' : 'P2';
+        if (history.length === 0) {
+            return 'P1';
+        }
+        
+        const previousSender = history[history.length - 1].sender;
+        return previousSender === 'P1' ? 'P2' : 'P1';
     }
     
     static areFilledProfiles(profiles) {
