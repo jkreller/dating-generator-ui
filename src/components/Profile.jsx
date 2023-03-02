@@ -18,7 +18,7 @@ const profileInformation = [
       choices: ["dating", "relationship"],
   },
   {
-      name: "Languages",
+      name: "Language",
       type: "choice",
       choices: ["English", "Spanish", "Mandarin", "Hindi", "Arabic", "Portuguese", "Bengali", "Japanese", "German"],
   },
@@ -56,7 +56,7 @@ const profileInformation = [
       choices: ["I have children", "Yes, I want children", "No, I don't want children", "Maybe, I'm not sure yet","Preferences open to discussion"],
   },
   {
-      name: "Pets",
+      name: "Favourite Pet",
       type: "choice",
       choices: ["Cats", "Dogs", "Reptiles", "Fish", "Rabbits", "Small Mammals", "Birds", "Amphibians", "Insects"],
   },
@@ -64,18 +64,17 @@ const profileInformation = [
 const interests = ['art', 'writing', 'photography', 'fitness', 'go to party', 'videogames', 'watching movies', 'reading', 'singing', 'dancing', 'making videos', 'go out with friends', 'garden', 'cooking'];
 
 const Profile = ({heading, onChange}) => {
-    const [selectedInterest, setSelectedInterest] = useState('');
-    return (
-        <VStack mb={10}>
-            <Heading as='h2' size='lg'>{heading}</Heading>
-            <SimpleGrid columns={{sm: 2, md: 3, lg: 4}} spacing={2}>
-              {profileInformation.map((info, index) => (
-                <ProfileInput key={index} info={info} onChange={onChange} />
-              ))}
-            </SimpleGrid>
-            <InterestBadges selected={selectedInterest} setSelected={setSelectedInterest} interests={interests} />
-        </VStack>
-    );
+  return (
+      <VStack mb={10}>
+          <Heading as='h2' size='lg'>{heading}</Heading>
+          <SimpleGrid columns={{sm: 2, md: 3, lg: 4}} spacing={2}>
+            {profileInformation.map((info, index) => (
+              <ProfileInput key={index} info={info} onChange={onChange} />
+            ))}
+          </SimpleGrid>
+          <InterestBadges interests={interests} onChange={onChange} />
+      </VStack>
+  );
 };
 
 export default Profile;

@@ -1,29 +1,33 @@
-import React from 'react';
-import { Stack, HStack, Heading, Text, Textarea, Input, Box, Badge, Select, SimpleGrid } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { Badge, Box } from "@chakra-ui/react";
+import Clickable from "../Clickable";
+import ProfileInputCallbackObject from '../../models/ProfileInputCallbackObject';
 
-const InterestBadges = ({ selected, setSelected, interests }) => {
+const InterestBadges = ({ interests, onChange }) => {
+  const [selected, setSelected] = useState([]);
+
   const handleClick = interest => {
+    let newSelected;
     if (selected.includes(interest)) {
-      const newSelected = selected.filter(item => item !== interest);
-      setSelected(newSelected);
+      newSelected = selected.filter(item => item !== interest);
     } else {
-      setSelected([...selected, interest]);
+      newSelected = [...selected, interest];
     }
+
+    setSelected(newSelected);
+    onChange(new ProfileInputCallbackObject('interests', newSelected));
   };
 
   return (
-    <SimpleGrid columns={{sm: 3, md: 4, lg: 7}} >
-      {interests.map(interest => (
-        <Badge
-          key={interest}
-          m="5px"
-          p="5px"
-          color={selected.includes(interest) ? 'black' : 'gray'}
-          onClick={() => handleClick(interest)}>
-          {interest}
-        </Badge>
+    <Box maxW='800px'>
+      {interests.map((interest, index) => (
+        <Clickable key={index} onClick={() => handleClick(interest)} id='interests'>
+          <Badge key={index} m='5px' p='7px' color={selected.includes(interest) ? 'white' : 'black'} background={selected.includes(interest) ? '#ff4d73' : 'gray.100'} borderRadius={5}>
+            {interest}
+          </Badge>
+        </Clickable>
       ))}
-    </SimpleGrid>
+    </Box>
   );
 };
 

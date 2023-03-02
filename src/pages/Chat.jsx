@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heading } from "@chakra-ui/react";
+import { Heading, Highlight } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Conversation from "../components/Conversation";
 import { getPickUpLine } from '../Api.js';
@@ -38,7 +38,14 @@ const Chat = () => {
 
   return (
     <>
-      <Heading as='h1' size='2xl' mb={10}>Dating AI</Heading>
+      <Heading as='h1' size='2xl' mb={10}>
+      <Highlight
+        query={'AI'}
+        styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
+      >
+        DAITING.BETTER
+        </Highlight>
+      </Heading>
       <Header onConversationStart={handleConversationStart} />
       <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} />
     </>
