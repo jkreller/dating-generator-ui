@@ -14,6 +14,7 @@ const Chat = () => {
   const [profiles, setProfiles] = useState({});
   const [history, setHistory] = useState([]);
   const [choices, setChoices] = useState([]);
+  const [hideConversation, setHideConversation] = useState(true);
 
   useEffect(() => {
     if (ProfileHelper.areFilledProfiles(profiles)) {
@@ -26,6 +27,7 @@ const Chat = () => {
 
   const handleConversationStart = (profiles) => {
     setProfiles(profiles);
+    setHideConversation(false);
   };
 
   function handleChoiceSelection(choice) {
@@ -56,7 +58,7 @@ const Chat = () => {
         <Header onConversationStart={handleConversationStart} />
       </AnimationBox>
       <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5, delay: 0.6}} initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} />
+        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} hidden={hideConversation} />
       </AnimationBox>
     </>
   );
