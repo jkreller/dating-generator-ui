@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button, VStack, Center } from "@chakra-ui/react";
+import { Button, VStack, Center, Text } from "@chakra-ui/react";
 import Profile from "../components/Profile";
+import ErrorAlert from "../components/ErrorAlert";
 import ProfileInputCallbackObject from '../models/ProfileInputCallbackObject';
 
-const Header = ({onConversationStart}) => {
+const Header = ({onConversationStart, errorMessage}) => {
   const [profiles, setProfiles] = useState({
     profile1: {},
     profile2: {}
@@ -38,6 +39,10 @@ const Header = ({onConversationStart}) => {
         <Profile heading='Your match' onChange={(event) => handleProfileChange(event, 2)} />
 
         <Button colorScheme='teal' onClick={() => onConversationStart(profiles)}>Go and chat!</Button>
+
+        { errorMessage &&
+          <ErrorAlert message={errorMessage} omitTitle={true} />
+        }
       </VStack>
     </Center>
   );

@@ -1,11 +1,11 @@
 import { FormControl, Select, Input, Box } from "@chakra-ui/react";
 
 
-function ProfileInput({info, onChange, isRequired}) {
+function ProfileInput({info, onChange}) {
   return (
     <FormControl key={info.name} id={info.name} isRequired={info.required}>
-      {info.type === "choice" ? (
-        <Box>
+      <Box ml='10px' mr='10px'>
+        {info.type === "choice" ? (
           <Select name={info.name} placeholder={info.name} onChange={onChange}>
             {info.choices.map((choice) => (
               <option key={choice} value={choice}>
@@ -13,12 +13,10 @@ function ProfileInput({info, onChange, isRequired}) {
               </option>
             ))}
           </Select>
-        </Box>
-      ) : (
-        <Box>
+        ) : (
           <Input name={info.name} placeholder={info.name} onChange={onChange} />
-        </Box>
-      )}
+        )}
+      </Box>
     </FormControl>
   );
 }

@@ -11,15 +11,29 @@ const AnimationBox = chakra(motion.div, {
 });
 
 const Chat = () => {
-  const [profiles, setProfiles] = useState({});
+  const [profiles, setProfiles] = useState(null);
   const [history, setHistory] = useState([]);
   const [choices, setChoices] = useState([]);
   const [hideConversation, setHideConversation] = useState(true);
   const [fetchError, setFetchError] = useState(null);
+  const [stopAiConversation, setStopAiConversation] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
+    if (!hideConversation) {
+      scrollToBottom();
+    }
+  }, [hideConversation, scrollToBottom]);
+
+  useEffect(() => {
+    if (history.length >= 6) {
+      setStopAiConversation(true);
+      return;
+    }
+    
     if (ProfileHelper.areFilledProfiles(profiles)) {
       console.log("Fetching choices");
+      setHideConversation(false);
       fetchChoices().then((choices) => {
         setChoices(choices);
       });
@@ -27,13 +41,25 @@ const Chat = () => {
   }, [profiles, history]);
 
   const handleConversationStart = (profiles) => {
+    if (!ProfileHelper.areFilledProfiles(profiles)) {
+      setErrorMessage('Please add at least one information for each profile');
+    } else {
+      setErrorMessage(null);
+    }
+
     setProfiles(profiles);
-    setHideConversation(false);
   };
 
   function handleChoiceSelection(choice) {
     setHistory([...history, {sender: ProfileHelper.getNextProfileIdByHistory(history), msg: choice}]);
     setChoices([]);
+  }
+
+  function scrollToBottom() {
+    window.scrollTo({
+      top: window.scrollY + window.innerHeight,
+      behavior: 'smooth',
+    });
   }
 
   async function fetchChoices() {
@@ -61,10 +87,10 @@ const Chat = () => {
         </Heading>
       </AnimationBox>
       <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5, delay: 0.3}} initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-        <Header onConversationStart={handleConversationStart} />
+        <Header onConversationStart={handleConversationStart} errorMessage={errorMessage} />
       </AnimationBox>
       <AnimationBox as={motion.div} transition={{ease: 'easeOut', duration: 0.5, delay: 0.6}} initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} hidden={hideConversation} fetchError={fetchError} />
+        <Conversation choices={choices} history={history} onChoiceSelection={handleChoiceSelection} hidden={hideConversation} fetchError={fetchError} stopAiConversation={stopAiConversation} />
       </AnimationBox>
     </>
   );

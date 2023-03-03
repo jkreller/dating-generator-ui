@@ -1,12 +1,15 @@
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
+import { Alert, AlertIcon, AlertTitle, AlertDescription, Center } from '@chakra-ui/react'
 
-const ErrorAlert = ({message}) => {
+const ErrorAlert = ({message, omitTitle = false}) => {
   return (
-    <Alert status='error'>
+    <Center>
+    <Alert status='error' borderRadius={7}>
         <AlertIcon />
-        <AlertTitle>Error!</AlertTitle>
+        { !omitTitle &&
+          <AlertTitle>Error!</AlertTitle>
+        }
         <AlertDescription>{message}</AlertDescription>
-    </Alert>
+    </Alert></Center>
   );
 };
 

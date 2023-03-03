@@ -1,17 +1,11 @@
-import { Stack, Heading, Flex, Spinner, Center, Text } from "@chakra-ui/react";
+import { Stack, Heading, Flex, Spinner, Center, Input } from "@chakra-ui/react";
 import Message from "../components/Message";
 import MessageChoices from "../components/MessageChoices";
 import ErrorAlert from "../components/ErrorAlert";
+import MessageInput from "../components/MessageInput";
 
-function Conversation({choices, history, onChoiceSelection, hidden, fetchError}) {
+function Conversation({choices, history, onChoiceSelection, hidden, fetchError, stopAiConversation}) {
   const isUser = history.length % 2 === 0;
-
-  if (!hidden) {
-    window.scrollTo({
-      top: window.scrollY + window.innerHeight,
-      behavior: 'smooth',
-    });
-  }
 
   return (
     <>
@@ -28,7 +22,12 @@ function Conversation({choices, history, onChoiceSelection, hidden, fetchError})
             choices={choices}
             onSelect={onChoiceSelection}
             isUser={isUser}
-          /> : (fetchError ? <ErrorAlert message='Error when trying to fetch messages' /> : <Center m='30px'><Spinner/></Center>) }
+          /> : (fetchError ?
+            <ErrorAlert message='Error when trying to fetch messages' /> :
+            (stopAiConversation ?
+              <MessageInput onSubmit={onChoiceSelection}/>
+              : <Center m='30px'><Spinner/></Center>)
+            ) }
         </Flex>
       </Stack>
     }

@@ -9,6 +9,8 @@ class ProfileHelper {
     }
     
     static areFilledProfiles(profiles) {
+        if (!profiles) return false;
+
         return profiles.profile1 &&
             profiles.profile2 &&
             Object.keys(profiles.profile1).length !== 0 &&
