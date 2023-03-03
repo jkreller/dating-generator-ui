@@ -9,7 +9,7 @@ export const getPickUpLine = async (profiles, sender, history) => {
   });
   
 
-  const {data} = await axios.post('https://dating-better.onrender.com/GetPickupLine', {
+  const {data} = await axios.post('http://dating-better.onrender.com/GetPickupLine', {
     "profile1": profiles.profile1,
     "profile2": profiles.profile2,
     "sender": sender,

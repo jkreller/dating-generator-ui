@@ -26,7 +26,7 @@ const Chat = () => {
   }, [hideConversation, scrollToBottom]);
 
   useEffect(() => {
-    if (history.length >= 6) {
+    if (history.length >= 4) {
       setStopAiConversation(true);
       return;
     }
@@ -45,9 +45,10 @@ const Chat = () => {
       setErrorMessage('Please add at least one information for each profile');
     } else {
       setErrorMessage(null);
+      setHistory([]);
+      setChoices([])
+      setProfiles(profiles);
     }
-
-    setProfiles(profiles);
   };
 
   function handleChoiceSelection(choice) {
