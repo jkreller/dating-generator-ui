@@ -74,7 +74,7 @@ const profileInformation = [
     type: "text",
   },
 ];
-const interests = ['art', 'writing', 'photography', 'clubbing', 'videogames', 'watching movies', 'reading', 'singing', 'dancing', 'go out with friends', 'gardening', 'cooking', 'fitness', 'gym', 'soccer', 'feminism', 'LGBTQIA+ ally', 'theater', 'meditation', 'coffee'];
+const interests = ['art', 'writing', 'photography', 'clubbing', 'videogames', 'watching movies', 'reading', 'singing', 'dancing', 'go out with friends', 'gardening', 'cooking', 'fitness', 'gym', 'soccer', 'feminism', 'theater', 'meditation', 'coffee'];
 
 const Profile = ({heading, onChange}) => {
   return (
