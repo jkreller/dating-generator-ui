@@ -66,6 +66,7 @@ const Chat = () => {
     const profileId = ProfileHelper.getNextProfileIdByHistory(history);
     try {
       const {choices} = await getPickUpLine(profiles, profileId, history);
+      setFetchError(null);
       return choices ?? []
     } catch (error) {
       console.error(`${error}`);
