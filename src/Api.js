@@ -14,7 +14,6 @@ export const getPickUpLine = async (profiles, sender, history) => {
     "profile2": profiles.profile2,
     "sender": sender,
     "msg_attr": [
-        "short",
         "creative",
         "witty",
         "teasing",
