@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Heading, Highlight, Box, chakra, shouldForwardProp } from "@chakra-ui/react";
+import { Heading, Highlight, chakra, shouldForwardProp } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Conversation from "../components/Conversation";
-import { getPickUpLine } from '../Api.js';
+import { getPickUpLine, getRoot } from '../Api.js';
 import ProfileHelper from "../helper/ProfileHelper";
 import { motion, isValidMotionProp } from "framer-motion"
 
@@ -18,6 +18,11 @@ const Chat = () => {
   const [fetchError, setFetchError] = useState(null);
   const [stopAiConversation, setStopAiConversation] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  // Initial call to backend to start it up
+  useEffect(() => {
+    getRoot();
+  }, []);
 
   useEffect(() => {
     if (!hideConversation) {
